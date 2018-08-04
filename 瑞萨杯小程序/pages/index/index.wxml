@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" style='background-color:#DDDDDD;' open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取用户信息 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <navigator url = "/pages/navigation/navigation" class="motto">一键找车位</navigator>
+  </view>
+</view>

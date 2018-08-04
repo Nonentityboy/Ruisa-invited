@@ -1,0 +1,51 @@
+page{
+  overflow: hidden;
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image:url('http://img.taopic.com/uploads/allimg/120924/234808-12092411125879.jpg'
+) ;
+
+}
+.page_hd{
+text-align:center;
+font-size:27rpx;
+}
+.im{
+  width:100%;
+  height:100%;
+  margin-left:400rpx;
+}
+.wrapper{
+  display:flex;
+  padding:0 10rpx;
+  width:500rpx;
+}
+.shijian{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:33.333%;
+  height:100rpx;
+  margin-right:10rpx;
+  border:1px solid #dfdfdf;
+  font-size: 30rpx;
+  background-color:#dfdfdf;
+}
+.fh{
+width:10rpx;
+height:100rpx;
+}
+.foot1{
+  width:100rpx;
+  height:20rpx;
+  text-align:center;
+  font-size:25rpx;
+  background-color:burlywood;
+}
+.img{
+  width:200rpx;
+  height:200rpx;
+}
+

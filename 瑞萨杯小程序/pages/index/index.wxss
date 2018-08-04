@@ -1,0 +1,43 @@
+/* pages/index1/index1.wxss */
+/**index.wxss**/
+page{
+   overflow:hidden;
+   position:fixed;
+   margin:0px;
+   background-size:100% 100%;
+   background-color:#CCEEFF;
+ /* background-image:url('http://www.51pptmoban.com/d/file/2014/07/29/96ad93d48df7ffe38ce9354d18cd4dca.jpg') */
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top:700rpx;
+  border:1px solid #405f80;
+  width: 230rpx;
+  height: 80rpx;
+  border-radius: 5px;
+  text-align:center;
+  position: absolute;
+  vertical-align: middle;
+}
+.motto{
+  font-size:28rpx;
+  font-weight: bold;
+  line-height: 80rpx;
+  color: #405f80;
+}

@@ -1,0 +1,17 @@
+<view class="section">
+  <input data-city="{{city}}" data-longitude="{{longitude}}" data-latitude="{{latitude}}" bindtouchstart="bindInput" placeholder="搜索"/>
+</view>
+<view class="map_container">
+  <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location markers="{{markers}}" controls="{{controls}}" bindmarkertap="makertap" bindcontroltap='controltap'></map>
+</view>
+
+<!-- <cover-view class="img-wrap">
+     <cover-image class="img" src="../../img/find.png"/>
+</cover-view>
+<cover-view class="img-wrap1">
+     <cover-image class="img1" src="../../img/people.png"/>
+</cover-view> -->
+<view class="map_text">
+  <text class="h1">{{textData.name}}</text>
+  <text>{{textData.desc}}</text>
+</view>
