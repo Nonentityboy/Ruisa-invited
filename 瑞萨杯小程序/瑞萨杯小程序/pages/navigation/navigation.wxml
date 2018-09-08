@@ -1,0 +1,11 @@
+<view class="section">
+  <input data-city="{{city}}" data-longitude="{{longitude}}" data-latitude="{{latitude}}" bindtouchstart="bindInput" placeholder="搜索"/>
+</view>
+
+  <map bindcontroltap="controltap" class="map" id="map"  longitude="108.902299" show-location latitude="34.153650" scale="14"  markers="{{markers}}" controls="{{controls}}" bindmarkertap="markertap" ></map>
+
+<view class="map_text">
+  <text class="h1">{{textName}}</text>
+  <text>{{textDesc}}</text>
+</view>
+

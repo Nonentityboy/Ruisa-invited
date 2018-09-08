@@ -1,0 +1,59 @@
+/* pages/login/login.js.wxss */
+page{
+   background-image:url('http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1507/13/c0/9720429_1436796492428_800x600.jpg'
+) ;
+}
+.contain{
+  margin-top:50rpx;
+}
+.row{
+  display:flex;
+  flex-direction:row;
+  margin-top:2rpx;
+  overflow: hidden;
+  line-height: 100rpx;
+  color: #777;
+  
+ 
+}
+.info-input{
+  height: 80rpx;
+   border: 1rpx solid gray;
+  margin-left: 50rpx;
+  color: #777;
+   border-radius: 10px;
+}
+.button{
+  width: 200rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  background: #33FF99;
+  margin-left: 10rpx;
+  color: #ffffff;
+}
+.submit{
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  background:blue;
+   color:#fff;
+}
+.success{
+  background: #ffffff;
+ 
+}
+.cheer{
+  text-align: center;
+  line-height: 400rpx;
+  font-size: 60rpx;
+  position: relative;
+}
+.return{
+  margin: 20rpx;
+ 
+}
+.menu-item-name{
+margin-left:40rpx;
+color:#fff;
+}

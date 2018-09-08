@@ -1,0 +1,101 @@
+page{
+  overflow: hidden;
+  position: fixed;
+ background-image:url('http://pic.58pic.com/58pic/13/42/86/58PIC0Z58PIC4nC_1024.jpg');
+}
+.page_page{
+  width:350rpx;
+  height:350rpx;
+  background-color:#f0f0f0;
+  box-shadow:10rpx 10rpx 10rpx 10rpx #0066cc;
+  border-radius:50%;
+  margin-left:200rpx;
+}
+.page_hd{
+text-align:center;
+font-size:40rpx;
+color:#005ab5;
+}
+.page_bd{
+  position:relative;
+}
+.btn{
+  width:300rpx;
+  height:100rpx;
+  background-color:#07cbff;
+  color:#f0f0f0;
+}
+.im{
+  width:100%;
+  height:100%;
+}
+.wrappe{
+  position:absolute;
+  top:90rpx;
+ display:flex;
+padding:20rpx 80rpx;
+  width:400rpx; 
+}
+.shijian{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:50rpx;
+  height:100rpx;
+  margin-right:10rpx;
+  border:1px solid #dfdfdf;
+  font-size: 30rpx;
+  background-color:#dfdfdf;
+}
+.foot{
+  margin-top:20rpx;
+   margin-left:300rpx;
+}
+.foot1{
+  width:200rpx;
+  height:50rpx;
+  text-align:center;
+  line-height: 30rpx;
+  font-size:40rpx;
+color:#0000e3;
+}
+.img{
+  margin-left:260rpx;
+  width:200rpx;
+  height:200rpx;
+}
+.sao{
+  width:100%;
+  height:700rpx;
+  position:relative;
+}
+.sao-k{
+  width:500rpx;
+  height:500rpx;
+  position:absolute;
+  left:450rpx;
+  top:300rpx;
+  display:flex;
+  flex-direction:column;
+}
+.imge{
+  width:150rpx;
+  height:150rpx;
+  transform:rotate(9deg);
+  animation:myfirst 0.5s;
+  animation-timing-function:linear;
+animation-iteration-count:infinite;
+animation-direction:alternate;
+animation-play-state:running;
+}
+@keyframes myfirst
+{
+0%{ transform:rotate(-30deg);}
+100%{ transform:rotate(30deg);}
+}
+.text{
+  width:150rpx;
+  height:20rpx;
+  font-size:30rpx;
+  color:white;
+}

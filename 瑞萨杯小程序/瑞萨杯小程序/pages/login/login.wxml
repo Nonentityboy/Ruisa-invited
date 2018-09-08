@@ -1,0 +1,21 @@
+<view wx:if="{{!success}}" class="contain">
+ <view class='row'>
+        <text class='menu-item-name'>姓名:</text>
+           <input class= 'info-input' bindinput="handleInputname"/>
+           </view> 
+ <view class='row'>
+        <text class='menu-item-name'>性别：</text>
+             <radio-group bindchange="change" class="menu-item-radio">
+               <radio value="男" >男</radio>
+                <radio value="女">女</radio>
+                </radio-group>
+          </view>
+       </view>
+  <view class='row'>
+        <text class='menu-item-name'>车牌号:</text>
+               <input class= 'info-input' bindinput="handlechepai" />
+         </view>
+ <button class='submit' bindtap='submit'>提交</button>
+ <view class = 'success' wx:if="{{success}}">
+ <view class='cheer'><icon type="success" size="24"/> 恭喜您注册成功!</view>
+ </view>

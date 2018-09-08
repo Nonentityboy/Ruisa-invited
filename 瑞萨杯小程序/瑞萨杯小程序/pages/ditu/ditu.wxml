@@ -1,0 +1,10 @@
+<view class="contain">
+<view class="map_container">
+  <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true" markers="{{markers}}" controls="{{controls}}" bindmarkertap="makertap">
+<cover-view class="tip-k" bindtap='Turn'>
+<cover-image class="searchcion" src="../../img/sou.png"></cover-image>
+<input type="text" placeholder="请输入关键字" class="sbc"></input>
+</cover-view>
+</map>
+</view>
+</view>
