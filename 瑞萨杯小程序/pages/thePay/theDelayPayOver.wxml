@@ -1,0 +1,18 @@
+<view class='container'>
+  <image src='../../img/payoverdelay.png' style='margin-top:0;width:300rpx;height:300rpx;'></image>
+<view class='paythings'>
+  <view class='paypeople'>
+    <view class='fontthing'>停车人:</view>
+    <view class='fontthething'>张三</view>
+  </view>
+  <view class='payaddress'>
+    <view class='fontthing'>停车地址:</view>
+    <view class='fontthething'>星巴克咖啡馆</view>
+  </view>
+  <view class='paytime'>
+    <view class='fontthing'>停车时间:</view>
+    <view class='fontthething'>2018-8-24 10:00</view>
+  </view>
+</view>
+<button class="return" bindtap='Return'>回到首页</button>
+</view>

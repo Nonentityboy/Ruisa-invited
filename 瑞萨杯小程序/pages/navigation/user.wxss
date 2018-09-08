@@ -30,6 +30,7 @@ page{
     position: relative;
     height: 400rpx;
     width: 100%;
+    background-color:#ccc;
 }
 
 .panel-pic{

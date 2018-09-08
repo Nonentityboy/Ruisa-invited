@@ -1,0 +1,24 @@
+<block wx:for="{{historyList}}" wx:key="historyList">
+    <view class="orderList">
+      <view class="order-title">
+        <view class="order-title-restaurantName">
+         {{item.start_time}}</view>
+        <view class="order-title-state">{{item.payStatus===0? '停车失败':'停车成功'}}</view>
+      </view>
+      <view class="order-content">
+        
+        <view class="order-content-info">
+          <view class="order-content-info-howToDistribute">
+            <view wx:for="{{item.mapName}}"  wx:key="orderDetailList">
+            <!-- wx:for="{{item.orderDetailList}}" -->
+            {{item.name}}  {{item.descript}}</view>
+          </view>
+          <view class="order-content-info-price">￥ {{item.price}}</view>
+        </view>
+      </view>
+      <view class="order-footer">
+        <view class="order-footer-address">地址:星巴克咖啡馆{{item.userAddress}}</view>
+        <view class="order-footer-orderAgain">回到首页</view>
+      </view>
+    </view>
+</block> 

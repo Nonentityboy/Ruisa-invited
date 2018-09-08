@@ -1,28 +1,27 @@
-
 <view class="page">
    <view class="page_hd">
-      <text>停车时长(4元/小时)</text>
+      <text>停车时长(3元/小时)</text>
    </view>
+   <view class="page_page">
    <view class="page_bd">
-      <view class="wrapper">
-         <view class="shijian" >{{hours}}</view>
-         <text class="fh">:</text>
-         <view class="shijian" >{{mins}}</view>
-         <text class="fh">:</text>
-         <view class="shijian" >{{seconds}}</view>
+      <view class="wrappe">
+        <text style='margin-left:30rpx;font-size:40rpx;color:#0066cc;'>{{timer}}</text>
       </view>
   </view>
-   <view >
+  </view>
+   <view class="foot">
       <text class="foot1">花费:{{cost}}元</text>  
   </view>
-  <view class="page_hd">
-  <text class="serch">点击图中二维码可进行付款</text>
-  </view>
-  <view class="view_img">
-  <image wx:if="{{image}}" src="{{image}}" bintap="previewImage" class="img"></image>
-  </view><view class="btn-area">
-  <button  bindtap="pause" class="btn" 
- type="primary">停止计费</button>
+ <view class="btn-area">
+  <button  bindtap="listenerButton" class="btn">停止计费</button>
+ </view>
+<view>  
+  <view class="sao">
+  <view class="sao-k">
+   <image class="imge" src="../../img/qiandai.png" bindtap="click"></image>
+   <text class="text">点我扫一扫</text>
+   </view>
+</view> 
 </view>
  </view>
  

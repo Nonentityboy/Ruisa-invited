@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+var avatarUrl
 Page({
   data: {
     motto: '一键找车',
@@ -11,7 +11,9 @@ Page({
   },
 
   //事件处理函数
-  bindViewTap: function () {
+  bindViewTap: function (event) {
+    var avatar = avatarUrl
+    console.log(5)
     wx.navigateTo({
       url: '../navigation/navigation'
     })
@@ -46,8 +48,11 @@ Page({
   },
   getUserInfo: function (e) {
     console.log(e)
+     avatarUrl = e.detail.userInfo.avatarUrl
+    console.log(avatarUrl)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
+      avatarUrl: avatarUrl, 
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })

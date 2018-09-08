@@ -5,8 +5,7 @@ page{
    position:fixed;
    margin:0px;
    background-size:100% 100%;
-   background-color:#CCEEFF;
- /* background-image:url('http://www.51pptmoban.com/d/file/2014/07/29/96ad93d48df7ffe38ce9354d18cd4dca.jpg') */
+ background-image:url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532502792614&di=a89a967328c76df5d9aad10dd139e8b8&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201406%2F24%2F20140624003608_4UseG.jpeg')
 }
 .userinfo {
   display: flex;
@@ -22,7 +21,7 @@ page{
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  color: #405f80;
 }
 
 .usermotto {

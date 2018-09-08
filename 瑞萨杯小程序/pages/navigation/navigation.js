@@ -1,61 +1,93 @@
-var app = getApp()
+var app = getApp();
+var prom = require("../../utils/prom.js");
 var amapFile = require('../../libs/amap-wx.js');
 var config = require('../../libs/config.js');
 var destination = getApp().globalData.destination;
+var setdestination = getApp().globalData.setdestination;
 var markersData = [];
+var markerdata = [];
 Page({
   data: {
-    markers: [
-      
-    ],
+    textName: "",
+    textDesc: "",
+    markers: [],
+    longitude: '',
+    latitude: '',
+    title: '',
     controls: [
-    {
-      id: 1,
-      iconPath: "../../img/find.png",
-      position: {
-        left:110,
-        top:305,
-        width: 160,
-        height: 160
+      {
+        id: 1,
+        iconPath: "../../img/find.png",
+        position: {
+          left: 110,
+          top: 305,
+          width: 160,
+          height: 160
+        },
+        clickable: true
       },
-      clickable: true
-    },
-    {
-      id: 2,
-      iconPath: "../../img/people.png",
-      position: {
-        left: 310,
-        top: 405,
-        width:50,
-        height:50
+      {
+        id: 2,
+        iconPath: "../../img/people.png",
+        position: {
+          left: 310,
+          top: 405,
+          width: 50,
+          height: 50
+        },
+        clickable: true
       },
-      clickable: true
-    },
-    {
-      id: 3,
-      iconPath: "../../img/location.png",
-      position: {
-        left: 20,
-        top: 400,
-        width: 55,
-        height: 55
+      {
+        id: 3,
+        iconPath: "../../img/location.png",
+        position: {
+          left: 20,
+          top: 400,
+          width: 55,
+          height: 55
+        },
+        clickable: true
       },
-      clickable: true
-    },
+      {
+        id: 4,
+        iconPath: "../../img/map_nav.png",
+        position: {
+          left: 20,
+          top: 10,
+          width: 150,
+          height: 40
+        },
+        clickable: true
+      },
     ],
     latitude: '',
     longitude: '',
     textData: {},
     city: ''
   },
-  makertap: function (e) {
-    var id = e.markerId;
+  moveToLocation: function () {
     var that = this;
-    that.showMarkerInfo(markersData, id);
-    that.changeMarkerColor(markersData, id);
+    this.mapCtx.moveToLocation()
+    wx.getLocation({
+      success: function (res) {
+        console.log(res)
+        console.log(res.latitude + ',' + res.longitude);
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+      }
+    })
   },
+  /* makertap: function (e) {
+     var id = e.markerId;
+     var that = this;
+     that.showMarkerInfo(markerdata, id);
+     that.changeMarkerColor(markerdata, id);
+   },*/
   onLoad: function (e) {
     this.mapCtx = wx.createMapContext('myMap')
+    this.moveToLocation();
     var _this = this;
     wx.getSystemInfo(
       {
@@ -75,86 +107,28 @@ Page({
         }
       }
     )
-    var that = this;
-    var key = config.Config.key;
-    var myAmapFun = new amapFile.AMapWX({ key: '900cd0384cc848c45188cdbff435c817'});
-    var params = {
-      iconPathSelected: '../../img/marker_checked.png',
-      iconPath: '../../img/marker.png',
-      success: function (data) {
-        markersData = data.markers;
-        var poisData = data.poisData;
-        var markers_new = [];
-        markersData.forEach(function (item, index) {
-          markers_new.push({
-            id: item.id,
-            latitude: item.latitude,
-            longitude: item.longitude,
-            iconPath: item.iconPath,
-            width: item.width,
-            height: item.height
-          })
-        })
-        if (markersData.length > 0) {
-          that.setData({
-            markers: markers_new
-          });
-          that.setData({
-            city: poisData[0].cityname || ''
-          });
-          that.setData({
-            latitude: markersData[0].latitude
-          });
-          that.setData({
-            longitude: markersData[0].longitude
-          });
-          that.showMarkerInfo(markersData, 0);
-        } else {
-          wx.getLocation({
-            type: 'gcj02',
-            success: function (res) {
-              that.setData({
-                latitude: res.latitude
-              });
-              that.setData({
-                longitude: res.longitude
-              });
-              that.setData({
-                city: '北京市'
-              });
-            },
-            fail: function () {
-              that.setData({
-                latitude: 39.909729
-              });
-              that.setData({
-                longitude: 116.398419
-              });
-              that.setData({
-                city: '北京市'
-              });
-            }
-          })
-
-          that.setData({
-            textData: {
-              name: '抱歉，未找到结果',
-              desc: ''
-            }
-          });
-        }
-
+    wx.request({
+      //  url: 'http://epigroup.tech:8888/Bechoosen',
+      url: 'http://epigroup.tech:8888/mixueshop/selectMapping',
+      method: 'GET',
+      header: {
+        'content-type': 'application/json' // 默认值
       },
-      fail: function (info) {
-        // wx.showModal({title:info.errMsg})
+      success: function (res) {
+        console.log(res.data);
+        _this.setData({
+          markers: res.data
+        })
+        _this.setData({
+          textName: res.data[0].name
+        })
+        _this.setData({
+          textDesc: res.data[0].descript
+        })
       }
-    }
-    if (e && e.keywords) {
-      params.querykeywords = e.keywords;
-    }
-    myAmapFun.getPoiAround(params)
+    })
   },
-  onReady:function(){
+  onReady: function () {
     this.mapCtx = wx.createMapContext('myMap')
   },
   bindInput: function (e) {
@@ -175,46 +149,141 @@ Page({
         name: data[i].name,
         desc: data[i].address
       }
-    });
-  },
-  changeMarkerColor: function (data, i) {
-    var that = this;
-    var markers = [];
-    for (var j = 0; j < data.length; j++) {
-      if (j == i) {
-        data[j].iconPath = "../../img/marker_checked.png";
-      } else {
-        data[j].iconPath = "../../img/marker.png";
-      }
-      markers.push({
-        id: data[j].id,
-        latitude: data[j].latitude,
-        longitude: data[j].longitude,
-        iconPath: data[j].iconPath,
-        width: data[j].width,
-        height: data[j].height
-      })
-    }
-    app.globalData.destination = data[i].longitude + ',' + data[i].latitude
-    console.log(app.globalData.destination);
-    that.setData({
-      markers: markers
-    });
-    wx.navigateTo({
-      url: "navigation_car/navigation"
     })
   },
   controltap: function (t) {
-      console.log(t)
-      if (2 === t.controlId) {
-        wx.navigateTo({
-          url: "user"
+    console.log(t)
+    if (1 === t.controlId) {
+      var _this = this;
+      wx.request({
+        url: 'http://epigroup.tech:8888/mixueshop/selectMapping',
+        method: 'GET',
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          console.log(res.data);
+          console.log(e.markerId)
+          var markerData = res.data;
+          var i = e.markerId;
+          _this.setData({
+            textName: markerData[i].name,
+            textDesc: markerData[i].descript,
+          });
+        }
+      })
+      for (var j = 0; j < markerData.length; j++) {
+        if (markerData[j].status === 0) {
+          markerData[j].iconPath = "/img/marker_choice.png";
+        }
+        else if (markerData[j].status === 1) {
+          markerData[j].iconPath = "/img/marker_checked.png";
+        }
+        else if (markerData[j].status === 2) {
+          markerData[j].iconPath = "/img/marker.png";
+        }
+        markers.push({
+          id: markerData[j].id,
+          latitude: markerData[j].latitude,
+          longitude: markerData[j].longitude,
+          status: markerData[j].status,
+          iconPath: markerData[j].iconPath,
+          width: 30,
+          height: 40
         })
-    } 
-    if (3 === t.controlId) {
-       {
-        this.mapCtx.moveToLocation()
+        that.setData({
+          markers: markers
+        });
       }
     }
-    },
+    else if (2 === t.controlId){
+      wx.navigateTo({
+        url: 'user',
+      })
+    }
+  },
+  markertap: function (e) {
+    console.log(e)
+    var _this = this;
+    wx.request({
+      url: 'http://epigroup.tech:8888/mixueshop/selectMapping',
+      method: 'GET',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data);
+        console.log(e.markerId)
+        var markerData = res.data;
+        var i = e.markerId;
+        _this.setData({
+          textName: markerData[i].name,
+          textDesc: markerData[i].descript,
+        });
+        _this.changeMarkerColor(markerData, i);
+      }
+    })
+  },
+  changeMarkerColor: function (markerData, i) {
+    var that = this;
+    var markers = [];
+    console.log(markerData[i]);
+    for (var j = 0; j < markerData.length; j++) {
+      if (j === 1 && markerData[i].id === 1 || j ===  0 && markerData[i].id === 0 ) {
+        wx.showModal({
+          title: '提示',
+          content: '是否选择此车位',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              wx.request({
+                url: 'http://epigroup.tech:8888/mixueshop/Bechoosen',
+                method: 'GET',
+                header: {
+                  'content-type': 'application/json' // 默认值
+                },
+                data: {
+                  id: markerData[i].id
+                },
+                success: function (res) {
+                  getApp().globalData.setdestination = markerData[i],
+                  getApp().globalData.destination = markerData[i].longitude + ',' + markerData[i].latitude;
+                  getApp().globalData.status = markerData[i].status,
+                  console.log(getApp().globalData.destination)
+                  wx.navigateTo({
+                    url: 'navigation_car/navigation',
+                  })
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+      else if (markerData[j].status === 0) {
+        markerData[j].iconPath = "/img/marker_choice.png" ;
+      }
+      else if (markerData[j].status === 1) {
+        markerData[j].iconPath = "/img/marker_checked.png";
+      }
+      else if (markerData[j].status === 2) {
+        markerData[j].iconPath = "/img/marker.png";
+      }
+      markers.push({
+        id: markerData[j].id,
+        latitude: markerData[j].latitude,
+        longitude: markerData[j].longitude,
+        status: markerData[j].status,
+        iconPath: markerData[j].iconPath,
+        width: 30,
+        height: 40
+      })
+      that.setData({
+        markers: markers
+      });
+    }
+    console.log(markers[i])
+  },
+
 })
